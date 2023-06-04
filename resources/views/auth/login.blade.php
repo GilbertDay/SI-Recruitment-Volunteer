@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="img js-fullheight" style="background-image: url(Template/images/bg.jpg);">
+<body class="img js-fullheight" style="background-image: url(Template/images/image.jpg);">
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
@@ -54,8 +54,14 @@
                                 <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
                             </div>
                             <div class="form-group d-md text-center">
-                                <a href="{{ route('register') }}" class="mb-4 text-center">{{ __('Register') }}</a>
+                                <a href="{{ route('register') }}" class="mb-4">{{ __('Register? / ') }}</a>
+                                @if (Route::has('password.request'))
+                                <a class="mb-4" href="{{ route('password.request') }}">
+                                    {{ __(' Forgot Your Password?') }}
+                                </a>
+                                @endif
                             </div>
+
                         </form>
 
                     </div>

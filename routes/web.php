@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/lowongandetail/{id}', [App\Http\Controllers\HomeController::class, 'show']);
 
 Route::group(['middleware' => ['cekrole:0']], function () {
     Route::get('/home', [App\Http\Controllers\UserController::class, 'beranda']);
@@ -22,5 +23,7 @@ Route::group(['middleware' => ['cekrole:0']], function () {
 Route::group(['middleware' => ['cekrole:1']], function () {
     Route::get('/home', [App\Http\Controllers\AdminController::class, 'beranda']);
 });
+
+
 Auth::routes();
 
