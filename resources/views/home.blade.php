@@ -81,24 +81,26 @@
                 <div class="col-xl-10">
                     <!-- single-job-content -->
                     @foreach($lowongan as $data)
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="/lowongandetail/{{$data['id_lowongan']}}"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                    @if($data->status == 1)
+                        <div class="single-job-items mb-30">
+                            <div class="job-items">
+                                <div class="company-img">
+                                    <a href="/lowongandetail/{{$data->id}}"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <a href="/lowongandetail/{{$data->id}}">
+                                        <h4>{{$data['judul']}}</h4>
+                                    </a>
+                                    <ul>
+                                        <li>{{$data['tanggal_buka']}} sampai {{$data['tanggal_tutup']}}</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="job-tittle">
-                                <a href="/lowongandetail/{{$data['id_lowongan']}}">
-                                    <h4>{{$data['judul']}}</h4>
-                                </a>
-                                <ul>
-                                    <li>{{$data['tanggal_buka']}} sampai {{$data['tanggal_tutup']}}</li>
-                                </ul>
+                            <div class="items-link f-right">
+                                <a href="/lowongandetail/{{$data->id}}">{{$data['jenis']}}</a>
                             </div>
                         </div>
-                        <div class="items-link f-right">
-                            <a href="/lowongandetail/{{$data['id_lowongan']}}">{{$data['jenis']}}</a>
-                        </div>
-                    </div>
+                    @endif
                     @endforeach
 
                     <!-- single-job-content -->
