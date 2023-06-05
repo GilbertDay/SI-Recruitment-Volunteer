@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Unit extends Model
 {
     protected $table = "unit";
-    protected $primaryKey = 'id_unit';
-    use HasFactory;
+
+    public function user() {
+        return $this->belongsTo("App\Models\User");
+    }
 }

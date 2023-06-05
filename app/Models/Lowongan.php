@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Lowongan extends Model
 {
     protected $table = "lowongan";
-    protected $primaryKey = 'id_lowongan';
-    use HasFactory;
+    // protected $primaryKey = 'id_lowongan';
+
+    public function unit() {
+        return $this->belongsTo("App\Models\Unit");
+    }
 
     protected $fillable = [
-        'id_lowongan', 'judul', 'syarat','deskripsi','waktu',
+        'id_lowongan','unit_id', 'judul', 'syarat','deskripsi','waktu',
     ];
 }
 
