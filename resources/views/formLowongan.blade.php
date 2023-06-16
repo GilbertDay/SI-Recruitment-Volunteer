@@ -13,7 +13,9 @@
       <label for="exampleInputPassword1" class="form-label">Unit</label>
       <select name="unit" class="form-control">
         @foreach ($unit as $item)
-            <option value="{{$item['id']}}">{{$item['nama']}}</option>
+            @if($item->user_id == Auth::user()->id)
+                <option value="{{$item['id']}}">{{$item['nama']}}</option>
+            @endif
         @endforeach
       </select>
     </div>
@@ -26,12 +28,13 @@
       </select>
     </div>
 
+
     <div class="mb-3">
       <div class="row form-group">
-        <label for="date" class="col-sm-1 col-form-label">Tanggal buka</label>
+        <label for="from" class="col-sm-1 col-form-label">Tanggal buka</label>
         <div class="col-sm-4">
             <div class="input-group date" id="datepickerbuka">
-                <input name="tanggal_buka" type="text" class="form-control">
+                <input name="tanggal_buka" type="text" class="form-control" id="from" >
                 <span class="input-group-append">
                     <span class="input-group-text bg-white">
                         <i class="fa fa-calendar"></i>
@@ -44,10 +47,10 @@
 
     <div class="mb-3">
       <div class="row form-group">
-        <label for="date" class="col-sm-1 col-form-label">Tanggal tutup</label>
+        <label for="to" class="col-sm-1 col-form-label">Tanggal tutup</label>
         <div class="col-sm-4">
             <div class="input-group date" id="datepickertutup">
-                <input name="tanggal_tutup" type="text" class="form-control">
+                <input name="tanggal_tutup" type="text" class="form-control" id="to">
                 <span class="input-group-append">
                     <span class="input-group-text bg-white">
                         <i class="fa fa-calendar"></i>
@@ -80,4 +83,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+
+
 @endsection
