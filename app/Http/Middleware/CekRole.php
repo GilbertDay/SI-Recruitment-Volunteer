@@ -17,6 +17,7 @@ class CekRole
     {
         if(in_array($request->user()->role,$role)){
             return $next($request);
+            dd($request);
             return redirect('/home');
         }else{
             return redirect('/');

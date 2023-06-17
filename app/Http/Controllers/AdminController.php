@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Lowongan;
+
 use App\Models\Unit;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+
 
 use Illuminate\Http\Request;
 use \Illuminate\Contracts\Support\Renderable;
@@ -14,6 +16,8 @@ class AdminController extends Controller
     public function adminlowongan()
     {
         $lowongan = Lowongan::all();
+
+        return view('admin.adminlowongan', compact('lowongan'));
         $user = User::where('role','unit')->get();
         return view('admin.adminlowongan', compact('lowongan','user'));
     }
@@ -73,6 +77,7 @@ class AdminController extends Controller
         $unit->save();
 
         return redirect("/adminunit");
+
 
     }
 }
