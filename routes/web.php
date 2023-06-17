@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/applyjob', [App\Http\Controllers\LamaranController::class, 'store']);
     });
 
-    Route::group(['middleware' => ['cekrole:admin']], function () {
+    Route::group(['middleware' => ['cekrole:unit']], function () {
         Route::get('/home', [App\Http\Controllers\KepalaUnit::class, 'beranda']);
         Route::get('/datalowongan', [App\Http\Controllers\KepalaUnit::class, 'datalowongan']);
         Route::get('/formlowongan', [App\Http\Controllers\KepalaUnit::class, 'formlowongan']);
@@ -40,9 +40,13 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Liat Pelamar
         Route::get('/pelamar', [App\Http\Controllers\KepalaUnit::class, 'showPelamar']);
-        Route::get('/cv/{cv}', [App\Http\Controllers\KepalaUnit::class, 'viewCv']);
-        Route::get('/transkrip/{transkrip}', [App\Http\Controllers\KepalaUnit::class, 'viewTranskrip']);
+        Route::get('/cvAdmin/{cv}', [App\Http\Controllers\KepalaUnit::class, 'viewCv']);
+        Route::get('/transkripAdmin/{transkrip}', [App\Http\Controllers\KepalaUnit::class, 'viewTranskrip']);
     });
+
 });
+// Route::group(['middleware' => ['cekrole:admin']], function () {
+//     Route::get('/home', [App\Http\Controllers\AdminController::class, 'beranda']);
+// });
 
 Auth::routes();

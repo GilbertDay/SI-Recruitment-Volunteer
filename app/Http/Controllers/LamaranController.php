@@ -47,31 +47,30 @@ class LamaranController extends Controller
         foreach ($cekLamar as $item){
             if($item->lowongan_id == $req->lowongan_id && $item->user_id == $req->user_id){
                 return redirect('/riwayat/'.$req->user_id)->with('data-ready','Anda sudah pernah melamar di Lowongan ini');
-            }else{
-                $lamaran = new Lamaran;
-                $lamaran->lowongan_id = $req->lowongan_id;
-                $lamaran->user_id = $req->user_id;
-                if($req->file('transkrip_nilai')){
-                    $fileName = time().'_'.$req->transkrip_nilai->getClientOriginalName();
-                    $lamaran->transkrip_nilai = $fileName;
-                    $req->transkrip_nilai->move(public_path('storage/transkrip_nilai'), $fileName);
-                }
-                if($req->file('cv')){
-                    $fileName = time().'_'.$req->cv->getClientOriginalName();
-                    $lamaran->cv = $fileName;
-                    $req->cv->move(public_path('storage/cv'), $fileName);
-                }
-                $lamaran->save();
-                // Tambah Jumlh Pendaftar
-                $lowongan = Lowongan::find($req->lowongan_id);
-                $lowongan->jml_pendaftar = $lowongan->jml_pendaftar + 1;
-
-                $lowongan->save();
-                return redirect('/');
             }
         }
+        $lamaran = new Lamaran;
+        $lamaran->lowongan_id = $req->lowongan_id;
+        $lamaran->user_id = $req->user_id;
+        if($req->file('transkrip_nilai')){
+            $fileName = time().'_'.$req->transkrip_nilai->getClientOriginalName();
+            $lamaran->transkrip_nilai = $fileName;
+            $req->transkrip_nilai->move(public_path('storage/transkrip_nilai'), $fileName);
+        }
+        if($req->file('cv')){
+            $fileName = time().'_'.$req->cv->getClientOriginalName();
+            $lamaran->cv = $fileName;
+            $req->cv->move(public_path('storage/cv'), $fileName);
+        }
+        $lamaran->save();
+        // Tambah Jumlh Pendaftar
+        $lowongan = Lowongan::find($req->lowongan_id);
+        $lowongan->jml_pendaftar = $lowongan->jml_pendaftar + 1;
 
+        $lowongan->save();
+        return redirect('/');
     }
+
 
     /**
      * Display the specified resource.

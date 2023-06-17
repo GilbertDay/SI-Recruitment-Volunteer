@@ -13,7 +13,7 @@ class UserController extends Controller
 
     public function beranda()
     {
-        return view('user');
+        return redirect('/');
     }
 
     public function riwayat($id)
