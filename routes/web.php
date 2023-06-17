@@ -14,7 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'adminlowongan']);
+Route::get('/adminunit', [App\Http\Controllers\AdminController::class, 'adminunit']);
+Route::get('/formunit', [App\Http\Controllers\AdminController::class, 'formunit']);
+Route::get('/formEditUnit/{id}', [App\Http\Controllers\AdminController::class, 'formEditUnit']);
+Route::post('/addunit', [App\Http\Controllers\AdminController::class, 'addunit']);
+Route::post('/editunit/{id}', [App\Http\Controllers\AdminController::class, 'editUnit']);
 Route::get('/lowongandetail/{id}', [App\Http\Controllers\HomeController::class, 'show']);
+
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/apply/{id}', [App\Http\Controllers\LamaranController::class, 'index']);

@@ -16,7 +16,12 @@ class LamaranController extends Controller
     public function index($id)
     {
         $lowongan = Lowongan::where('id',$id)->get();
-        return view ('formLamar',compact('lowongan'));
+        $syaratArray = [];
+        foreach ($lowongan as $data) {
+            $syarat = explode(',', $data->syarat);
+            $syaratArray[] = $syarat;
+        }
+        return view ('formLamar',compact('lowongan','syaratArray'));
     }
 
     /**
@@ -37,25 +42,35 @@ class LamaranController extends Controller
      */
     public function store(Request $req)
     {
-        $lamaran = new Lamaran;
-        $lamaran->lowongan_id = $req->lowongan_id;
-        $lamaran->user_id = $req->user_id;
-        $lamaran->semester = $req->semester;
-        $lamaran->ipk = 3;
-        if($req->file('transkrip_nilai')){
-            $fileName = $req->transkrip_nilai->getClientOriginalName();
-            $lamaran->transkrip_nilai = $fileName;
-            $req->transkrip_nilai->move(public_path('storage/transkrip_nilai'), $fileName);
-        }
-        if($req->file('cv')){
-            $fileName = $req->cv->getClientOriginalName();
-            $lamaran->cv = $fileName;
-            $req->cv->move(public_path('storage/cv'), $fileName);
-        }
-        $lamaran->save();
-        return redirect('/');
-    }
+        $cekLamar = Lamaran::where('user_id',$req->user_id)->get();
 
+        foreach ($cekLamar as $item){
+            if($item->lowongan_id == $req->lowongan_id && $item->user_id == $req->user_id){
+                return redirect('/riwayat/'.$req->user_id)->with('data-ready','Anda sudah pernah melamar di Lowongan ini');
+            }else{
+                $lamaran = new Lamaran;
+                $lamaran->lowongan_id = $req->lowongan_id;
+                $lamaran->user_id = $req->user_id;
+                if($req->file('transkrip_nilai')){
+                    $fileName = time().'_'.$req->transkrip_nilai->getClientOriginalName();
+                    $lamaran->transkrip_nilai = $fileName;
+                    $req->transkrip_nilai->move(public_path('storage/transkrip_nilai'), $fileName);
+                }
+                if($req->file('cv')){
+                    $fileName = time().'_'.$req->cv->getClientOriginalName();
+                    $lamaran->cv = $fileName;
+                    $req->cv->move(public_path('storage/cv'), $fileName);
+                }
+                $lamaran->save();
+                // Tambah Jumlh Pendaftar
+                $lowongan = Lowongan::find($req->lowongan_id);
+                $lowongan->jml_pendaftar = $lowongan->jml_pendaftar + 1;
+
+                $lowongan->save();
+                return redirect('/');
+            }
+        }
+    }
     /**
      * Display the specified resource.
      *

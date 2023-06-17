@@ -51,18 +51,6 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <div>
-                                    <input id="ku" type="radio" name="role" value="1">
-                                    <label for="ku">Kepala Unit</label>
-                                </div>
-
-                                <div>
-                                    <input id="user" type="radio" name="role" value="0">
-                                    <label for="user">User</label>
-                                </div>
-
-                            </div>
-                            <div class="form-group">
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
                                     placeholder="Password" required autocomplete="current-password">

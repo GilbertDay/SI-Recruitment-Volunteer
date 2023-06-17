@@ -13,7 +13,6 @@
                 <thead>
                     <tr>
                         <th>Judul</th>
-                        <th class="w-25"> </th>
                     </tr>
                 </thead>
                 <tbody>

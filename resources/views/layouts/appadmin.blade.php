@@ -61,15 +61,15 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="/datalowongan">
+                <a class="nav-link" href="/admin">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Lowongan</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/pelamar">
+                <a class="nav-link" href="/adminunit">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Applied Job</span></a>
-            </li>
+                    <span>Unit</span></a>
+            </li>   
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
