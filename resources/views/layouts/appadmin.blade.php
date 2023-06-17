@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     <title>Dashboard</title>
 
     <!-- Custom fonts for this template-->
@@ -144,9 +146,11 @@
                                       {{auth::user()->name}}
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                        <a class="dropdown-item" href="/">Back Home</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
+
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -256,13 +260,48 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $(function() {
             $('#datepickerbuka').datepicker();
             $('#datepickertutup').datepicker();
         });
-    </script>
+    </script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        $( function() {
+        var dateFormat = "mm/dd/yy",
+            from = $( "#from" )
+                .datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1,
+                minDate:0
+                })
+                .on( "change", function() {
+                to.datepicker( "option", "minDate", getDate( this ) );
+                }),
+            to = $( "#to" ).datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1
+            })
+            .on( "change", function() {
+                from.datepicker( "option", "maxDate", getDate( this ) );
+            });
 
+            function getDate( element ) {
+            var date;
+                try {
+                    date = $.datepicker.parseDate( dateFormat, element.value );
+                } catch( error ) {
+                    date = null;
+                }
+
+                return date;
+                }
+        } );
+    </script>
 </body>
 
 </html>

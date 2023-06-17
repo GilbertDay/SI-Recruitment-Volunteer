@@ -17,20 +17,18 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/lowongandetail/{id}', [App\Http\Controllers\HomeController::class, 'show']);
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/apply/{id}', [App\Http\Controllers\LamaranController::class, 'index']);
-    Route::post('/applyjob', [App\Http\Controllers\LamaranController::class, 'store']);
 
-
-    Route::group(['middleware' => ['cekrole:0']], function () {
+    Route::group(['middleware' => ['cekrole:user']], function () {
         Route::get('/home', [App\Http\Controllers\UserController::class, 'beranda']);
         Route::get('/riwayat/{id}', [App\Http\Controllers\UserController::class, 'riwayat']);
         Route::get('/cv/{cv}', [App\Http\Controllers\UserController::class, 'viewCv']);
         Route::get('/transkrip/{transkrip}', [App\Http\Controllers\UserController::class, 'viewTranskrip']);
-
-
+        // User Apply
+        Route::get('/apply/{id}', [App\Http\Controllers\LamaranController::class, 'index']);
+        Route::post('/applyjob', [App\Http\Controllers\LamaranController::class, 'store']);
     });
 
-    Route::group(['middleware' => ['cekrole:1']], function () {
+    Route::group(['middleware' => ['cekrole:admin']], function () {
         Route::get('/home', [App\Http\Controllers\KepalaUnit::class, 'beranda']);
         Route::get('/datalowongan', [App\Http\Controllers\KepalaUnit::class, 'datalowongan']);
         Route::get('/formlowongan', [App\Http\Controllers\KepalaUnit::class, 'formlowongan']);
@@ -42,14 +40,9 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Liat Pelamar
         Route::get('/pelamar', [App\Http\Controllers\KepalaUnit::class, 'showPelamar']);
-        Route::get('/cv/{cv}', [App\Http\Controllers\UserController::class, 'viewCv']);
-        Route::get('/transkrip/{transkrip}', [App\Http\Controllers\UserController::class, 'viewTranskrip']);
+        Route::get('/cv/{cv}', [App\Http\Controllers\KepalaUnit::class, 'viewCv']);
+        Route::get('/transkrip/{transkrip}', [App\Http\Controllers\KepalaUnit::class, 'viewTranskrip']);
     });
 });
 
-
-
-
-
 Auth::routes();
-

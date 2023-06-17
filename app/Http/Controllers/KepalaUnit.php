@@ -44,7 +44,7 @@ class KepalaUnit extends Controller
         $data_lowongan->judul = $req->judul;
         $data_lowongan->unit_id = $req->unit;
         $data_lowongan->user_id = $req->user_id;
-        $data_lowongan->syarat = implode(', ', (array) $req->input('syarat', []));
+        $data_lowongan->syarat = implode(',', (array) $req->input('syarat', []));
         $data_lowongan->jenis = $req->jenis;
         $data_lowongan->tanggal_buka = $req->tanggal_buka;
         $data_lowongan->tanggal_tutup = $req->tanggal_tutup;
@@ -60,7 +60,7 @@ class KepalaUnit extends Controller
         $data_lowongan->judul = $req->judul;
         $data_lowongan->unit_id = $req->unit;
         $data_lowongan->user_id = $req->user_id;
-        $data_lowongan->syarat = implode(', ', (array) $req->input('syarat', []));
+        $data_lowongan->syarat = implode(',', (array) $req->input('syarat', []));
         $data_lowongan->jenis = $req->jenis;
         $data_lowongan->tanggal_buka = $req->tanggal_buka;
         $data_lowongan->tanggal_tutup = $req->tanggal_tutup;
@@ -78,5 +78,14 @@ class KepalaUnit extends Controller
         $lowongan = Lowongan::where('user_id',(Auth::user()->id))->get();
         $daftarPelamar = Lamaran::all();
         return view('kepalaUnit.daftarPelamar', compact(['daftarPelamar','lowongan']));
+    }
+
+    public function viewCv($cv){
+        $path = public_path('storage/cv/'.$cv);
+        return response()->file($path);
+    }
+    public function viewTranskrip($transkrip){
+        $path = public_path('storage/transkrip_nilai/'.$transkrip);
+        return response()->file($path);
     }
 }
