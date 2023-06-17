@@ -70,6 +70,7 @@ class LamaranController extends Controller
                 return redirect('/');
             }
         }
+
     }
     /**
      * Display the specified resource.

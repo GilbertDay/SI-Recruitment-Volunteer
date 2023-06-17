@@ -20,7 +20,6 @@
                         @if($data->status == 0 )
                             <tr>
                                 <td>{{$data['judul']}}</td>
-                                <td>{{$data['unit_id']}}</td>
                                 <th class="w-25 px-3">
                                     <a href="/delete/{{$data->id}}" action="/deletelowongan" >
                                         <button type="button" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');" class="btn btn-danger float-right mr-3">
