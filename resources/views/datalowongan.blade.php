@@ -13,10 +13,20 @@
                 <thead>
                     <tr>
                         <th>Judul</th>
+                        <th>Syarat</th>
+                        <th>Jumlah Pendaftar</th>
+                        <th>Jenis</th>
+                        <th>Tanggal Buka</th>
+                        <th>Tanggal Tutup</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($lowongan as $data)
+                    <td>{{$data['judul']}}</td>
+                    <td>{{$data['syarat']}}</td>
+                    <td>{{$data['jml_pendaftar']}}</td>
+                    <td>{{$data['jenis']}}</td>
+                    <td>{{$data['tanggal_buka']}}</td>
+                    <td>{{$data['tanggal_tutup']}}</td>
                     @if($data->status == 0 )
                     <tr>
                         <td>{{$data['judul']}}</td>

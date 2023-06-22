@@ -26,7 +26,8 @@ $syarat = explode(',', $item->syarat);
                 </thead>
                 <tbody>
                     @foreach($daftarPelamar as $data)
-                    @if($item->user_id == $data->lowongan->user_id && $data->lowongan->judul == $item->judul)
+                    @if($item->user_id == $data->lowongan->user_id && $data->lowongan->judul == $item->judul
+                    && $data->status == 0 )
                     <tr>
                         <td>{{$data->user->name}}</td>
                         <td>{{$data->user->email}}</td>

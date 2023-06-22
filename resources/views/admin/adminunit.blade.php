@@ -4,7 +4,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between align-middle">
-        <h4 class="m-0 font-weight-bold text-primary">Data Lowongan</h6>
+        <h4 class="m-0 font-weight-bold text-primary">Data Unit</h6>
             <a href="/formunit" type="button" class="btn btn-primary">Tambah Unit</a>
     </div>
     <div class="card-body">
@@ -12,7 +12,7 @@
             <table class="table table-borderless" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Judul</th>
+                        <th>Nama</th>
                         <th>E-mail</th>
                     </tr>
                 </thead>
@@ -23,7 +23,7 @@
                         <td>{{$data['nama']}}</td>
                         <td>{{$data['email']}}</td>
                         <th class="w-25 px-3">
-                            <a href="/deleteUnit/{{$data->user_id}}" action="/deletelowongan">
+                            <a href="/deleteUnit/{{$data->user_id}}">
                                 <button type="button" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');"
                                     class="btn btn-danger float-right mr-3">
                                     <i class="bi bi-trash"></i>

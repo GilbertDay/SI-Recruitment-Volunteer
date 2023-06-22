@@ -12,11 +12,7 @@
     <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Unit</label>
         <select name="unit" class="form-control" aria-readonly="true">
-            @foreach ($unit as $item)
-            @if($item->user_id == Auth::user()->id)
-            <option value="{{$item['id']}}">{{$item['nama']}}</option>
-            @endif
-            @endforeach
+            <option value="{{$unit['id']}}">{{$unit['nama']}}</option>
         </select>
     </div>
 

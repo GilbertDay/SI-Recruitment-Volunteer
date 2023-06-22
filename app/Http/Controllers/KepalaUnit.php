@@ -26,14 +26,14 @@ class KepalaUnit extends Controller
 
     public function formlowongan()
     {
-        $unit = Unit::all();
+        $unit = Unit::where('user_id',(Auth::user()->id))->first();
         return view('formLowongan', compact('unit'));
 
     }
 
     public function formeditLowongan($id){
         $lowongan = Lowongan::find($id);
-        $unit = Unit::all();
+        $unit = Unit::where('user_id',(Auth::user()->id))->first();
         return view('formEditLowongan', compact('lowongan','unit'));
     }
 

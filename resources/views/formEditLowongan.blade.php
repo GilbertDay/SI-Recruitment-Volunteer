@@ -16,9 +16,7 @@ $syarat = explode(',', $lowongan->syarat);
     <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Unit</label>
         <select name="unit" class="form-control">
-            @foreach ($unit as $item)
-            <option value="{{$item['id']}}">{{$item['nama']}}</option>
-            @endforeach
+            <option value="{{$unit['id']}}">{{$unit['nama']}}</option>
         </select>
     </div>
 
