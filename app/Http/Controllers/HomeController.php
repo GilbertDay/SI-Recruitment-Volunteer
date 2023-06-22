@@ -53,10 +53,6 @@ class HomeController extends Controller
     public function show($id)
     {
         $detaillowongan = Lowongan::where('id',$id)->get();
-        // dd($detaillowongan);
-        // $lowongan = Lowongan::all();
-        // return dd($lowongan);
-        // return view ('detailLowongan', ['detaillowongan'=>$detaillowongan]);
         $syaratArray = [];
         foreach ($detaillowongan as $detail) {
             $syarat = explode(',', $detail->syarat);

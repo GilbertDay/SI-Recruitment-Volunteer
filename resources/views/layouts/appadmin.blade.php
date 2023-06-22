@@ -10,7 +10,9 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
@@ -62,6 +64,7 @@
             </div>
 
             <!-- Nav Item - Tables -->
+            @if(Auth::user()->role == 'admin')
             <li class="nav-item">
                 <a class="nav-link" href="/admin">
                     <i class="fas fa-fw fa-table"></i>
@@ -71,7 +74,24 @@
                 <a class="nav-link" href="/adminunit">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Unit</span></a>
-            </li>   
+            </li>
+            @elseif(Auth::user()->role == 'unit')
+            <li class="nav-item">
+                <a class="nav-link" href="/datalowongan">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Data Lowongan</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/verifikasiBerkas">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Daftar Pelamar</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/wawancaraPelamar">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Wawancara Pelamar</span></a>
+            </li>
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -141,13 +161,14 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
 
-                                <div class="btn-group dropstart mt-3 mr-2">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                      {{auth::user()->name}}
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                        <a class="dropdown-item" href="/">Back Home</a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            <div class="btn-group dropstart mt-3 mr-2">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{auth::user()->name}}
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                                    <a class="dropdown-item" href="/">Back Home</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
 
@@ -156,12 +177,12 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                    </ul>
-                                  </div>
+                                </ul>
+                            </div>
 
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-left shadow animated--grow-in"
-                            aria-labelledby="userDropdown">
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -246,7 +267,9 @@
     <!-- Custom scripts for all pages-->
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 
     <!-- Page level plugins -->
     <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
@@ -258,7 +281,8 @@
     <!-- Datepicker -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js">
+    </script>
 
     <!-- <script type="text/javascript">
         $(function() {
@@ -269,39 +293,50 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
-        $( function() {
-        var dateFormat = "mm/dd/yy",
-            from = $( "#from" )
+        $(function () {
+            var dateFormat = "mm/dd/yy",
+                from = $("#from")
                 .datepicker({
-                defaultDate: "+1w",
-                changeMonth: true,
-                numberOfMonths: 1,
-                minDate:0
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 1,
+                    minDate: 0
                 })
-                .on( "change", function() {
-                to.datepicker( "option", "minDate", getDate( this ) );
+                .on("change", function () {
+                    to.datepicker("option", "minDate", getDate(this));
                 }),
-            to = $( "#to" ).datepicker({
-                defaultDate: "+1w",
-                changeMonth: true,
-                numberOfMonths: 1
-            })
-            .on( "change", function() {
-                from.datepicker( "option", "maxDate", getDate( this ) );
-            });
+                to = $("#to").datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 1
+                })
+                .on("change", function () {
+                    from.datepicker("option", "maxDate", getDate(this));
+                });
 
-            function getDate( element ) {
-            var date;
+            function getDate(element) {
+                var date;
                 try {
-                    date = $.datepicker.parseDate( dateFormat, element.value );
-                } catch( error ) {
+                    date = $.datepicker.parseDate(dateFormat, element.value);
+                } catch (error) {
                     date = null;
                 }
 
                 return date;
-                }
-        } );
+            }
+        });
+
     </script>
+    <script>
+        $(document).ready(function () {
+            $('#timepicker').timepicker({
+                container: '#exampleModal'
+            });
+        })
+        $()
+
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 </body>
 
 </html>

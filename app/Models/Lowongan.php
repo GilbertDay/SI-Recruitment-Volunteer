@@ -15,7 +15,7 @@ class Lowongan extends Model
     }
 
     protected $fillable = [
-        'id_lowongan','unit_id', 'judul', 'syarat','deskripsi','waktu',
+        'id_lowongan','unit_id', 'judul','verifikasi_berkas','syarat','deskripsi','waktu',
     ];
 }
 

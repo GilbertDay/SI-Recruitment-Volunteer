@@ -15,7 +15,7 @@ class KepalaUnit extends Controller
 
     public function beranda()
     {
-        return view('admin');
+        return view('kepalaunit.unit');
     }
 
     public function datalowongan()
@@ -49,6 +49,7 @@ class KepalaUnit extends Controller
         $data_lowongan->tanggal_buka = $req->tanggal_buka;
         $data_lowongan->tanggal_tutup = $req->tanggal_tutup;
         $data_lowongan->deskripsi = $req->deskripsi;
+        $data_lowongan->status = $req->status;
         $data_lowongan->save();
         return redirect("/datalowongan");
     }
@@ -65,19 +66,54 @@ class KepalaUnit extends Controller
         $data_lowongan->tanggal_buka = $req->tanggal_buka;
         $data_lowongan->tanggal_tutup = $req->tanggal_tutup;
         $data_lowongan->deskripsi = $req->deskripsi;
+        $data_lowongan->status = $req->status;
         $data_lowongan->save();
         return redirect("/datalowongan");
     }
 
     public function deletelowongan($id){
         $data_lowongan = Lowongan::find($id)->delete();
-        return redirect("/datalowongan");
+        return redirect()->back();
     }
 
-    public function showPelamar(){
+    public function verifikasiBerkas(){
         $lowongan = Lowongan::where('user_id',(Auth::user()->id))->get();
-        $daftarPelamar = Lamaran::all();
+        $daftarPelamar = Lamaran::where('verifikasi_berkas',0)->get();
         return view('kepalaUnit.daftarPelamar', compact(['daftarPelamar','lowongan']));
+    }
+
+    public function terimaBerkas(Request $req,$id){
+        $lamaran = Lamaran::find($id);
+        $lamaran->jadwal_wawancara = $req->tanggal.' '.$req->waktu;
+        $lamaran->verifikasi_berkas = 1;
+        $lamaran->save();
+        return redirect('/wawancaraPelamar');
+    }
+
+    public function formTerima($id){
+        return view('kepalaUnit.formAddJadwal', compact('id'));
+    }
+
+
+    public function wawancaraPelamar(){
+        $lowongan = Lowongan::where('user_id',(Auth::user()->id))->get();
+        $daftarPelamar = Lamaran::where('verifikasi_berkas',1)->get();
+        return view('kepalaUnit.wawancaraPelamar', compact(['daftarPelamar','lowongan']));
+    }
+
+    public function terimaPelamar($id){
+        $lamaran = Lamaran::find($id);
+        $lamaran->jadwal_wawancara = "";
+        $lamaran->status = 1;
+        $lamaran->save();
+        return redirect()->back();
+    }
+    public function tolakPelamar($id){
+        $lamaran = Lamaran::find($id);
+        $lamaran->jadwal_wawancara = "";
+        $lamaran->status = 2;
+        $lamaran->save();
+        return redirect()->back();
     }
 
     public function viewCv($cv){

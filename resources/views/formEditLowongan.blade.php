@@ -1,7 +1,7 @@
 @extends('layouts.appadmin')
 @section('content')
 @php
-$syarat = explode(', ', $lowongan -> syarat);
+$syarat = explode(',', $lowongan->syarat);
 @endphp
 <form method="POST" action="/editlowongan/{{$lowongan->id}}">
     @csrf
@@ -86,6 +86,14 @@ $syarat = explode(', ', $lowongan -> syarat);
         <label for="exampleFormControlTextarea1">Deskripsi</label>
         <textarea name="deskripsi" class="form-control" id="exampleFormControlTextarea1"
             rows="3">{{$lowongan->deskripsi}}</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Status Lowongan</label>
+        <select name="status" class="form-control">
+            <option value="1">Aktif</option>
+            <option value="0">Tidak Aktif</option>
+        </select>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

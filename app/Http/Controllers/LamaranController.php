@@ -62,6 +62,7 @@ class LamaranController extends Controller
             $lamaran->cv = $fileName;
             $req->cv->move(public_path('storage/cv'), $fileName);
         }
+        $lamaran->verifikasi_berkas = 0;
         $lamaran->save();
         // Tambah Jumlh Pendaftar
         $lowongan = Lowongan::find($req->lowongan_id);

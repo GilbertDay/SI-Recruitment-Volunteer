@@ -19,12 +19,6 @@ $syarat = explode(',', $item->syarat);
                     <tr>
                         <th>Nama Pelamar</th>
                         <th>Email</th>
-                        @if(in_array('CV',$syarat))
-                        <th>CV</th>
-                        @endif
-                        @if(in_array('Transkrip Nilai',$syarat))
-                        <th>Transkrip Nilai</th>
-                        @endif
                         <th>Aksi</th>
 
 
@@ -36,14 +30,6 @@ $syarat = explode(',', $item->syarat);
                     <tr>
                         <td>{{$data->user->name}}</td>
                         <td>{{$data->user->email}}</td>
-                        @if(in_array('Transkrip Nilai',$syarat))
-                        <td><a href="/transkripAdmin/{{$data->transkrip_nilai}}" target="_blank"><button type="button"
-                                    class="btn btn-info">Lihat Transkrip Nilai</button></a></td>
-                        @endif
-                        @if(in_array('CV',$syarat))
-                        <td><a href="/cvAdmin/{{$data->cv}}" target="_blank"><button type="button"
-                                    class="btn btn-info">Lihat CV</button></a></td>
-                        @endif
                         <th>
                             <!-- Example single danger button -->
                             <div class="btn-group">
@@ -52,8 +38,8 @@ $syarat = explode(',', $item->syarat);
                                     Action
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/formTerima/{{$data->id}}">Terima</a>
-                                    <a class="dropdown-item" href="/tolakBerkas">Tolak</a>
+                                    <a class="dropdown-item" href="/terimaPelamar/{{$data->id}}">Terima</a>
+                                    <a class="dropdown-item" href="/tolakPelamar/{{$data->id}}">Tolak</a>
                                 </div>
                             </div>
                         </th>
