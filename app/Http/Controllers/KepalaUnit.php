@@ -73,7 +73,7 @@ class KepalaUnit extends Controller
 
     public function deletelowongan($id){
         $data_lowongan = Lowongan::find($id)->delete();
-        return redirect("/datalowongan");
+        return redirect()->back();
     }
 
     public function verifikasiBerkas(){

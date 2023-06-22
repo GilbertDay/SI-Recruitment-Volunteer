@@ -59,7 +59,7 @@ class AdminController extends Controller
     public function formEditUnit($id){
         $user = User::find($id);
         $unit = Unit::where('user_id', $id)->first();
-        
+
         return view('admin.formEditUnit', compact('user','unit'));
     }
 
@@ -77,7 +77,10 @@ class AdminController extends Controller
         $unit->save();
 
         return redirect("/adminunit");
+    }
 
-
+    public function deleteUnit($id){
+        $user = User::find($id)->delete();
+        return redirect()->back();
     }
 }

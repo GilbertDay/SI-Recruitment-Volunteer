@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/formEditUnit/{id}', [App\Http\Controllers\AdminController::class, 'formEditUnit']);
     Route::post('/addunit', [App\Http\Controllers\AdminController::class, 'addunit']);
     Route::post('/editunit/{id}', [App\Http\Controllers\AdminController::class, 'editUnit']);
+    Route::get('/deleteUnit/{id}', [App\Http\Controllers\AdminController::class, 'deleteUnit']);
 
     Route::group(['middleware' => ['cekrole:user']], function () {
         Route::get('/home', [App\Http\Controllers\UserController::class, 'beranda']);

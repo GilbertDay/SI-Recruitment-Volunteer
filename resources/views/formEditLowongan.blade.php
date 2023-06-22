@@ -1,7 +1,7 @@
 @extends('layouts.appadmin')
 @section('content')
 @php
-$syarat = explode(', ', $lowongan -> syarat);
+$syarat = explode(',', $lowongan->syarat);
 @endphp
 <form method="POST" action="/editlowongan/{{$lowongan->id}}">
     @csrf
