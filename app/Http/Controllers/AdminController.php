@@ -5,6 +5,7 @@ use App\Models\Lowongan;
 
 use App\Models\Unit;
 use App\Models\User;
+use App\Models\Lamaran;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -82,5 +83,11 @@ class AdminController extends Controller
     public function deleteUnit($id){
         $user = User::find($id)->delete();
         return redirect()->back();
+    }
+
+    public function liatPelamar($id){
+        $lamaran = Lamaran::where('lowongan_id',$id)->get();
+        $lowongan = Lowongan::find($id);
+        return view('admin.liatPelamar', compact('lamaran','lowongan'));
     }
 }

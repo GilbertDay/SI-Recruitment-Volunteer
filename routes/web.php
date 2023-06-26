@@ -28,6 +28,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/addunit', [App\Http\Controllers\AdminController::class, 'addunit']);
     Route::post('/editunit/{id}', [App\Http\Controllers\AdminController::class, 'editUnit']);
     Route::get('/deleteUnit/{id}', [App\Http\Controllers\AdminController::class, 'deleteUnit']);
+    Route::get('/liatPelamar/{id}', [App\Http\Controllers\AdminController::class, 'liatPelamar']);
+    Route::get('/cvAdm/{cv}', [App\Http\Controllers\KepalaUnit::class, 'viewCv']);
+    Route::get('/transkripAdm/{transkrip}', [App\Http\Controllers\KepalaUnit::class, 'viewTranskrip']);
+
 
     Route::group(['middleware' => ['cekrole:user']], function () {
         Route::get('/home', [App\Http\Controllers\UserController::class, 'beranda']);
@@ -53,6 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/verifikasiBerkas', [App\Http\Controllers\KepalaUnit::class, 'verifikasiBerkas']);
         Route::get('/formTerima/{id}', [App\Http\Controllers\KepalaUnit::class, 'formTerima']);
         Route::post('/terimaBerkas/{id}', [App\Http\Controllers\KepalaUnit::class, 'terimaBerkas']);
+        Route::get('/tolakBerkas/{id}', [App\Http\Controllers\KepalaUnit::class, 'tolakBerkas']);
         Route::get('/terimaPelamar/{id}', [App\Http\Controllers\KepalaUnit::class, 'terimaPelamar']);
         Route::get('/tolakPelamar/{id}', [App\Http\Controllers\KepalaUnit::class, 'tolakPelamar']);
         Route::get('/wawancaraPelamar', [App\Http\Controllers\KepalaUnit::class, 'wawancaraPelamar']);

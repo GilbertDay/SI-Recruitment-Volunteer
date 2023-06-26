@@ -90,6 +90,14 @@ class KepalaUnit extends Controller
         return redirect('/wawancaraPelamar');
     }
 
+    public function tolakBerkas($id){
+        $lamaran = Lamaran::find($id);
+        $lamaran->verifikasi_berkas = 2;
+        $lamaran->status = 2;
+        $lamaran->save();
+        return redirect()->back();
+    }
+
     public function formTerima($id){
         return view('kepalaUnit.formAddJadwal', compact('id'));
     }

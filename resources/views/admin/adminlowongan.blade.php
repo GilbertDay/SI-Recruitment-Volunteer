@@ -17,6 +17,8 @@
                         <th>Syarat</th>
                         <th>Deskripsi</th>
                         <th class="text-center">Jumlah Pendaftar</th>
+                        <th></th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -28,6 +30,8 @@
                         <td>{{$data->syarat}}</td>
                         <td>{{$data->deskripsi}}</td>
                         <td class="text-center">{{$data->jml_pendaftar}}</td>
+                        <td><a href="/liatPelamar/{{$data->id}}" class="btn btn-primary">View</a></td>
+
                     </tr>
                     @endif
                     @endforeach
@@ -51,6 +55,8 @@
                         <th>Syarat</th>
                         <th>Deskripsi</th>
                         <th class="text-center">Jumlah Pendaftar</th>
+                        <th></th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +68,7 @@
                         <td>{{$data->syarat}}</td>
                         <td>{{$data->deskripsi}}</td>
                         <td class="text-center">{{$data->jml_pendaftar}}</td>
+                        <td><a href="/cv/{{$data->cv}}" target="_blank" class="btn btn-primary">View</a></td>
                     </tr>
                     @endif
                     @endforeach

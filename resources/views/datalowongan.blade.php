@@ -21,15 +21,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <td>{{$data['judul']}}</td>
-                    <td>{{$data['syarat']}}</td>
-                    <td>{{$data['jml_pendaftar']}}</td>
-                    <td>{{$data['jenis']}}</td>
-                    <td>{{$data['tanggal_buka']}}</td>
-                    <td>{{$data['tanggal_tutup']}}</td>
+                    @foreach($lowongan as $data)
                     @if($data->status == 0 )
                     <tr>
                         <td>{{$data['judul']}}</td>
+                        <td>{{$data['syarat']}}</td>
+                        <td>{{$data['jml_pendaftar']}}</td>
+                        <td>{{$data['jenis']}}</td>
+                        <td>{{$data['tanggal_buka']}}</td>
+                        <td>{{$data['tanggal_tutup']}}</td>
                         <th class="w-25 px-3">
                             <a href="/delete/{{$data->id}}" action="/deletelowongan">
                                 <button type="button" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');"
@@ -62,6 +62,11 @@
                 <thead>
                     <tr>
                         <th>Judul</th>
+                        <th>Syarat</th>
+                        <th>Jumlah Pendaftar</th>
+                        <th>Jenis</th>
+                        <th>Tanggal Buka</th>
+                        <th>Tanggal Tutup</th>
                         <th class="w-25"> </th>
                     </tr>
                 </thead>
@@ -70,6 +75,11 @@
                     @if($data->status == 1)
                     <tr>
                         <td>{{$data['judul']}}</td>
+                        <td>{{$data['syarat']}}</td>
+                        <td>{{$data['jml_pendaftar']}}</td>
+                        <td>{{$data['jenis']}}</td>
+                        <td>{{$data['tanggal_buka']}}</td>
+                        <td>{{$data['tanggal_tutup']}}</td>
                         <th class="w-25 px-3">
                             <a href="/delete/{{$data->id}}" action="/deletelowongan">
                                 <button type="button" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');"
