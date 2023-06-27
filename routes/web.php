@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/wawancaraPelamar', [App\Http\Controllers\KepalaUnit::class, 'wawancaraPelamar']);
         Route::get('/cvAdmin/{cv}', [App\Http\Controllers\KepalaUnit::class, 'viewCv']);
         Route::get('/transkripAdmin/{transkrip}', [App\Http\Controllers\KepalaUnit::class, 'viewTranskrip']);
+        Route::get('/arsipPelamar', [App\Http\Controllers\KepalaUnit::class, 'arsipPelamar']);
     });
 
 });

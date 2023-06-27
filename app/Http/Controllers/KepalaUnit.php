@@ -132,4 +132,10 @@ class KepalaUnit extends Controller
         $path = public_path('storage/transkrip_nilai/'.$transkrip);
         return response()->file($path);
     }
+
+    public function arsipPelamar(){
+        $pelamar = Lamaran::where('status',2)->get();
+        $lowongan = Lowongan::all();
+        return view('kepalaUnit.arsipPelamar', compact('pelamar', 'lowongan'));
+    }
 }

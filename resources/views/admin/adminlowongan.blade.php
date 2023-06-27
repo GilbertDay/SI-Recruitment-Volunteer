@@ -68,7 +68,6 @@
                         <td>{{$data->syarat}}</td>
                         <td>{{$data->deskripsi}}</td>
                         <td class="text-center">{{$data->jml_pendaftar}}</td>
-                        <td><a href="/cv/{{$data->cv}}" target="_blank" class="btn btn-primary">View</a></td>
                     </tr>
                     @endif
                     @endforeach
